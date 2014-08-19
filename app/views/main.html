@@ -1,0 +1,97 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      </button>
+      <span class="navbar-brand">
+      Voice Expense
+      </span>
+      <div class="navbar-text navbar-left" >
+        
+      </div>
+    </div>
+    
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown">Period <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Day</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Week</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Month</a></li>
+            <!-- <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li> -->
+          </ul>
+        </li>
+      </ul>
+      
+      <!-- <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul> -->
+      </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="alert alert-info" role="alert">{{info}}<span class="badge pull-right">${{sum()}} / {{expenses.length}}</div>
+    
+    <!-- <div class="row marketing"> -->
+    <ul class="list-group">
+      <li ng-repeat="expense in expenses | filter:{'status':'YET'}" class="list-group-item list-group-item-warning">
+        
+        <div class="btn-group" ng-show='expense.status=="_YET"'>
+          
+          <button class="btn btn-default btn-sm glyphicon glyphicon-time" ng-disabled='true'>{{expense.date | date:'yyyy-MM-dd'}}</button>
+          <button class="btn btn-default btn-sm glyphicon glyphicon-ok" ng-click="confirmExpense(expense)" ng-disabled='expense.status!="_YET"'>Confirm</button>
+          <button class="btn btn-default btn-sm glyphicon glyphicon-remove" ng-click="removeExpense(expense)" ng-disabled='expense.status!="_YET"'>Reject</button>
+        </div>
+        <div class="clearfix"></div>
+        <p><label>${{expense.amount}}</label>  {{expense.caption}}</p>
+        
+      </li>
+    </ul>
+    
+    <ul class="list-group">
+      <li ng-repeat="expense in expenses | filter:status='OKZ'" class="list-group-item list-group-item-success ">
+        <div class="input-group">
+          <span class="input-group-addon ">{{expense.date | date:'yyyy-MM-dd HH:mm'}}</span>
+          <label type="text" class="form-control" style="overflow:hidden;" placeholder="Username">{{expense.caption}} </label>
+          <span class="input-group-addon">${{expense.amount}}</span>
+        </div>
+      </li>
+    </ul>
+    <!-- </div> -->
+    <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+      <div class="container">
+        <span class="pull-right">
+          <button class="btn btn-default glyphicon glyphicon-plus" ng-click="start()" ng-show="!recognizing">Start</button>
+          <button class="btn btn-default glyphicon glyphicon-volume-up" ng-click="stop()" ng-show="recognizing">Stop</button>
+        </span>
+        <span ><span class="glyphicon glyphicon-heart"></span> from River</span>
+      </div>
+    </nav>
